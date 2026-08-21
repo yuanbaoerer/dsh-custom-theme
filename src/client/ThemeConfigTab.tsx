@@ -105,6 +105,11 @@ export function ThemeConfigTab({ t, config }: ThemeConfigTabProps) {
   const apply = (next: ThemeConfigView) => {
     setCurrent(next)
     applyConfigLive(next)
+    // The config bridge (injected at page load) keeps the previously injected
+    // palette/image vars, and inline overrides cannot clear them. Reload so
+    // the bridge re-injects the freshly saved config (this also restores a
+    // cleared palette to the shipped defaults).
+    window.setTimeout(() => window.location.reload(), 250)
   }
 
   const run = async (op: string, fn: () => Promise<ThemeConfigView>, okText: string) => {
