@@ -1,0 +1,9 @@
+- insert:
+    - id: custom-theme
+      name: dsh-custom-theme
+      config:
+        imageRoute: /custom-theme
+        imagePath: /custom-theme/theme.jpg
+        imageFile: assets/theme.jpg
+        analyzeProvider: deepseek-official
+        analyzeModel: deepseek-v4-flash-vision-exp

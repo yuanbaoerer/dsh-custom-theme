@@ -1,0 +1,32 @@
+.toggle {
+  border: 1px solid var(--dsw-alias-border-l2);
+  min-width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  color: var(--dsw-alias-label-primary);
+  font-family: var(--dsw-font-family);
+  cursor: pointer;
+  background: transparent;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0;
+  font-size: 13px;
+  line-height: 20px;
+  display: inline-flex;
+  transition: background var(--ds-transition-duration, 0.2s) var(--ds-ease-in-out, ease),
+    color var(--ds-transition-duration, 0.2s) var(--ds-ease-in-out, ease);
+}
+
+.toggle:hover:not(:disabled) {
+  background: var(--dsw-alias-interactive-bg-hover);
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--dsw-alias-brand-primary);
+  outline-offset: 1px;
+}
+
+.toggle svg {
+  flex: none;
+}

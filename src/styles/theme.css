@@ -1,0 +1,197 @@
+/* dsh custom image theme — built from theme.jpg
+   Light mode: warm paper + olive accent
+   Dark mode: charcoal + olive accent
+   The UI surfaces are slightly translucent so the artwork shows through.
+
+   Every key color is a CSS custom property with the shipped palette as
+   fallback. The host bridge injects `--dsh-custom-theme-{mode}-*` values on
+   :root from the persisted config, so the agent-tuned palette overrides the
+   defaults without editing this file. */
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  background-color: var(--dsh-custom-theme-light-bg-base, #f6f6f0);
+  background-image: var(--dsh-custom-theme-image, url('/custom-theme/theme.jpg'));
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+body[data-ds-dark-theme] {
+  background-color: var(--dsh-custom-theme-dark-bg-base, #10120e);
+}
+
+/* Dimming layer: keeps text readable while the image remains visible. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--dsh-custom-theme-overlay-light, rgba(255, 255, 255, 0.04));
+}
+
+body[data-ds-dark-theme]::after {
+  background: var(--dsh-custom-theme-overlay-dark, rgba(10, 12, 8, 0.34));
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* Make the outer app frame transparent so the body background image shows. */
+#root {
+  background: transparent;
+}
+
+#root > div {
+  background: transparent !important;
+}
+
+/* ── Light palette ─────────────────────────────────────────────── */
+body {
+  --dsw-alias-bg-base: var(--dsh-custom-theme-light-bg-base, rgba(253, 254, 253, 0.55)) !important;
+  --dsw-alias-bg-layer-1: var(--dsh-custom-theme-light-layer1, rgba(255, 255, 255, 0.65)) !important;
+  --dsw-alias-bg-layer-2: var(--dsh-custom-theme-light-layer2, rgba(252, 252, 249, 0.75)) !important;
+  --dsw-alias-bg-layer-3: var(--dsh-custom-theme-light-layer3, rgba(255, 255, 255, 0.85)) !important;
+  --dsw-alias-bg-overlay: var(--dsh-custom-theme-light-layer2, rgba(248, 249, 243, 0.80)) !important;
+  --dsw-alias-bg-module-platform: rgba(245, 246, 238, 0.68) !important;
+  --dsw-alias-bg-multi-select: rgba(242, 244, 232, 0.74) !important;
+
+  --dsw-alias-border-l1: var(--dsh-custom-theme-light-border, rgba(110, 120, 80, 0.14)) !important;
+  --dsw-alias-border-l2: rgba(110, 120, 80, 0.20) !important;
+  --dsw-alias-border-l3: rgba(110, 120, 80, 0.28) !important;
+
+  --dsw-alias-label-primary: var(--dsh-custom-theme-light-label-primary, #292c24) !important;
+  --dsw-alias-label-secondary: var(--dsh-custom-theme-light-label-secondary, #5c604f) !important;
+  --dsw-alias-label-tertiary: #7b8069 !important;
+  --dsw-alias-label-caption: #8a8f78 !important;
+  --dsw-alias-label-dimmed: #a6ab95 !important;
+
+  --dsw-alias-brand-primary: var(--dsh-custom-theme-light-brand, #6b7436) !important;
+  --dsw-alias-brand-text: #4f5628 !important;
+  --dsw-alias-brand-primary-invert: #f3f5e8 !important;
+  --dsw-alias-button-primary-fill: var(--dsh-custom-theme-light-brand, #6b7436) !important;
+  --dsw-alias-button-primary-hover: #59612c !important;
+  --dsw-alias-button-info-fill: var(--dsh-custom-theme-light-brand, #6b7436) !important;
+  --dsw-alias-button-info-hover: #59612c !important;
+  --dsw-alias-button-elevated-fill: rgba(255, 255, 255, 0.86) !important;
+  --dsw-alias-button-floating-fill: rgba(255, 255, 255, 0.90) !important;
+  --dsw-alias-button-floating-hover: rgba(248, 249, 241, 0.95) !important;
+
+  --dsw-alias-interactive-bg-hover: rgba(107, 116, 54, 0.10) !important;
+  --dsw-alias-interactive-bg-active: rgba(107, 116, 54, 0.16) !important;
+  --dsw-alias-interactive-bg-hover-accent: rgba(107, 116, 54, 0.20) !important;
+
+  --dsw-specific-sidebar-fill: rgba(248, 250, 244, 0.38) !important;
+  --dsw-specific-sidebar-nav-item-hover: rgba(107, 116, 54, 0.10) !important;
+  --dsw-specific-sidebar-nav-item-active: rgba(107, 116, 54, 0.16) !important;
+  --dsw-specific-sidebar-nav-item-active-accent: rgba(107, 116, 54, 0.22) !important;
+  --dsw-specific-bubble: rgba(240, 242, 229, 0.70) !important;
+  --dsw-specific-bubble-highlight: rgba(225, 230, 198, 0.62) !important;
+  --dsw-specific-input-major: rgba(255, 255, 255, 0.90) !important;
+  --dsw-specific-login-input: rgba(248, 249, 242, 0.90) !important;
+  --dsw-specific-menu: rgba(255, 255, 255, 0.95) !important;
+  --dsw-specific-selector: rgba(245, 246, 238, 0.90) !important;
+  --dsw-specific-tip: rgba(240, 242, 229, 0.85) !important;
+
+  --dsw-alias-state-success-primary: #5b7a3a !important;
+  --dsw-alias-state-success-secondary: #7fa05a !important;
+  --dsw-alias-state-business-primary: #6b7436 !important;
+}
+
+/* ── Dark palette ──────────────────────────────────────────────── */
+body[data-ds-dark-theme] {
+  --dsw-alias-bg-base: var(--dsh-custom-theme-dark-bg-base, rgba(18, 20, 16, 0.58)) !important;
+  --dsw-alias-bg-layer-1: var(--dsh-custom-theme-dark-layer1, rgba(24, 27, 22, 0.68)) !important;
+  --dsw-alias-bg-layer-2: var(--dsh-custom-theme-dark-layer2, rgba(30, 33, 27, 0.78)) !important;
+  --dsw-alias-bg-layer-3: var(--dsh-custom-theme-dark-layer3, rgba(37, 40, 33, 0.86)) !important;
+  --dsw-alias-bg-overlay: var(--dsh-custom-theme-dark-layer2, rgba(27, 30, 24, 0.82)) !important;
+  --dsw-alias-bg-module-platform: rgba(24, 27, 22, 0.62) !important;
+  --dsw-alias-bg-multi-select: rgba(30, 33, 27, 0.70) !important;
+
+  --dsw-alias-border-l1: var(--dsh-custom-theme-dark-border, rgba(205, 215, 165, 0.12)) !important;
+  --dsw-alias-border-l2: rgba(205, 215, 165, 0.18) !important;
+  --dsw-alias-border-l3: rgba(205, 215, 165, 0.26) !important;
+
+  --dsw-alias-label-primary: var(--dsh-custom-theme-dark-label-primary, #eef0e6) !important;
+  --dsw-alias-label-secondary: var(--dsh-custom-theme-dark-label-secondary, #b7bda5) !important;
+  --dsw-alias-label-tertiary: #929a7e !important;
+  --dsw-alias-label-caption: #7e866c !important;
+  --dsw-alias-label-dimmed: #6b7359 !important;
+
+  --dsw-alias-brand-primary: var(--dsh-custom-theme-dark-brand, #b7c46a) !important;
+  --dsw-alias-brand-text: #e2e8c2 !important;
+  --dsw-alias-brand-primary-invert: #22261b !important;
+  --dsw-alias-button-primary-fill: var(--dsh-custom-theme-dark-brand, #9eab56) !important;
+  --dsw-alias-button-primary-hover: #b7c46a !important;
+  --dsw-alias-button-info-fill: var(--dsh-custom-theme-dark-brand, #9eab56) !important;
+  --dsw-alias-button-info-hover: #b7c46a !important;
+  --dsw-alias-button-elevated-fill: rgba(30, 33, 27, 0.86) !important;
+  --dsw-alias-button-floating-fill: rgba(30, 33, 27, 0.90) !important;
+  --dsw-alias-button-floating-hover: rgba(39, 42, 35, 0.94) !important;
+
+  --dsw-alias-interactive-bg-hover: rgba(183, 196, 106, 0.12) !important;
+  --dsw-alias-interactive-bg-active: rgba(183, 196, 106, 0.20) !important;
+  --dsw-alias-interactive-bg-hover-accent: rgba(183, 196, 106, 0.24) !important;
+
+  --dsw-specific-sidebar-fill: rgba(14, 16, 12, 0.38) !important;
+  --dsw-specific-sidebar-nav-item-hover: rgba(183, 196, 106, 0.12) !important;
+  --dsw-specific-sidebar-nav-item-active: rgba(183, 196, 106, 0.18) !important;
+  --dsw-specific-sidebar-nav-item-active-accent: rgba(183, 196, 106, 0.26) !important;
+  --dsw-specific-bubble: rgba(42, 46, 36, 0.74) !important;
+  --dsw-specific-bubble-highlight: rgba(54, 60, 44, 0.66) !important;
+  --dsw-specific-input-major: rgba(24, 27, 22, 0.90) !important;
+  --dsw-specific-login-input: rgba(20, 23, 18, 0.90) !important;
+  --dsw-specific-menu: rgba(37, 40, 33, 0.95) !important;
+  --dsw-specific-selector: rgba(24, 27, 22, 0.90) !important;
+  --dsw-specific-tip: rgba(42, 46, 36, 0.85) !important;
+
+  --dsw-alias-state-success-primary: #8fb45f !important;
+  --dsw-alias-state-success-secondary: #a8c979 !important;
+  --dsw-alias-state-business-primary: #b7c46a !important;
+}
+
+/* ── Dark-mode toggle button ─────────────────────────────────────
+   Matches the native dsh Session log header capsule. */
+.dsh-custom-theme-toggle {
+  border: 1px solid var(--dsw-alias-border-l2);
+  min-width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  color: var(--dsw-alias-label-primary);
+  font-family: var(--dsw-font-family);
+  cursor: pointer;
+  background: transparent;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0;
+  font-size: 13px;
+  line-height: 20px;
+  display: inline-flex;
+  transition: background var(--ds-transition-duration, 0.2s) var(--ds-ease-in-out, ease),
+    color var(--ds-transition-duration, 0.2s) var(--ds-ease-in-out, ease);
+}
+
+.dsh-custom-theme-toggle:hover:not(.busy) {
+  background: var(--dsw-alias-interactive-bg-hover);
+}
+
+.dsh-custom-theme-toggle:focus-visible {
+  outline: 2px solid var(--dsw-alias-brand-primary);
+  outline-offset: 1px;
+}
+
+.dsh-custom-theme-toggle.busy {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.dsh-custom-theme-toggle svg {
+  flex: none;
+}

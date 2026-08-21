@@ -1,0 +1,92 @@
+{
+  "name": "dsh-custom-theme",
+  "version": "0.1.0",
+  "description": "Image-based theme bundle for dsh web: host-served artwork, --dsw-* token palette, and a native client dark-mode toggle",
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "types": "./lib/types/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "lib/styles",
+    "lib/assets",
+    "lib/types/**/*.d.ts",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-theme",
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-settings"
+      ],
+      "platform": "web"
+    }
+  },
+  "scripts": {
+    "build": "tsdown && node scripts/clean-types.mjs && tsc -p tsconfig.json --emitDeclarationOnly",
+    "bundle": "tsdown",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "@deepseek-ai/schemastery": "^3.18.1"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1",
+    "@deepseek-ai/dsh-client-runtime": ">=0.1.0-rc.6 <0.2.0",
+    "@deepseek-ai/dsh-client-ui-conversation": ">=0.1.0-rc.6 <0.2.0",
+    "@deepseek-ai/dsh-client-ui-primitives": ">=0.1.0-rc.6 <0.2.0",
+    "@deepseek-ai/dsh-client-ui-slots": ">=0.1.0-rc.6 <0.2.0",
+    "@deepseek-ai/dsh-client-ui-theme": ">=0.1.0-rc.6 <0.2.0",
+    "@deepseek-ai/dsh-host-webserver": ">=0.1.0-rc.6 <0.2.0",
+    "@deepseek-ai/dsh-llm": ">=0.1.0-rc.6 <0.2.0",
+    "@deepseek-ai/dsh-session": ">=0.1.0-rc.6 <0.2.0",
+    "@deepseek-ai/dsh-attachment": ">=0.1.0-rc.6 <0.2.0",
+    "@deepseek-ai/dsh-agent-default-model": ">=0.1.0-rc.6 <0.2.0",
+    "react": "^18.2.0",
+    "@deepseek-ai/dsh-client-locale": ">=0.1.0-rc.6 <0.2.0",
+    "@deepseek-ai/dsh-client-ui-settings": ">=0.1.0-rc.6 <0.2.0"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1",
+    "@deepseek-ai/dsh-client-runtime": "0.1.0-rc.8",
+    "@deepseek-ai/dsh-client-ui-conversation": "0.1.0-rc.8",
+    "@deepseek-ai/dsh-client-ui-primitives": "0.1.0-rc.8",
+    "@deepseek-ai/dsh-client-ui-slots": "0.1.0-rc.8",
+    "@deepseek-ai/dsh-client-ui-theme": "0.1.0-rc.8",
+    "@deepseek-ai/dsh-host-webserver": "0.1.0-rc.8",
+    "@types/node": "^26.2.0",
+    "@types/react": "~18.3.1",
+    "lightningcss": "^1.32.0",
+    "react": "^18.2.0",
+    "tsdown": "^0.22.2",
+    "typescript": "^6.0.3",
+    "@deepseek-ai/dsh-client-locale": "0.1.0-rc.8",
+    "@deepseek-ai/dsh-client-ui-settings": "0.1.0-rc.8"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "dsh-theme",
+    "deepseek-harness"
+  ],
+  "license": "MIT"
+}
