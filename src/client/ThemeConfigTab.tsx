@@ -161,7 +161,9 @@ export function ThemeConfigTab({ t, config }: ThemeConfigTabProps) {
       return await requestJson('/custom-theme-config', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(DEFAULT_CONFIG),
+        // Empty palettes fall back to the shipped olive/paper palette; this
+        // fully restores the original default theme (artwork + palette).
+        body: JSON.stringify({ ...DEFAULT_CONFIG, paletteLight: {}, paletteDark: {} }),
       })
     }, t('resetSuccess'))
   }
